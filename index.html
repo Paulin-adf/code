@@ -159,6 +159,7 @@ header.site.scr{border-color:var(--line);box-shadow:0 6px 20px -16px rgba(24,38,
 .pricepop .save{background:var(--coral);color:#fff;font-size:.72rem;font-weight:800;padding:.3em .7em;border-radius:999px;letter-spacing:.03em}
 .hero-visual{position:relative;width:100%;max-width:360px;margin:.4em auto 2em}
 .hero-visual .glow{position:absolute;inset:-8% -6% -12% -6%;background:radial-gradient(60% 55% at 60% 42%,rgba(242,166,59,.4),transparent 70%),radial-gradient(55% 55% at 30% 75%,rgba(14,122,86,.28),transparent 72%);filter:blur(12px);z-index:0;animation:glowpulse 6s ease-in-out infinite}
+.hero-visual picture{display:block;width:100%}
 .hero-visual img{position:relative;z-index:1;display:block;width:100%;max-width:100%;height:auto;object-fit:contain;margin:0 auto;filter:drop-shadow(0 34px 50px rgba(12,58,42,.32))}
 .float-chip{position:absolute;z-index:2;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.6em .85em;box-shadow:var(--shadow-m);font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:.5em;line-height:1.15}
 .float-chip .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
@@ -290,6 +291,7 @@ header.site.scr{border-color:var(--line);box-shadow:0 6px 20px -16px rgba(24,38,
 .marquee:hover .marquee-track{animation-play-state:paused}
 @keyframes scroll{to{transform:translateX(-50%)}}
 .tcard{flex:none;width:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px;box-shadow:var(--shadow-m)}
+.tcard picture{display:block;line-height:0}
 .tcard img{height:340px;width:auto;border-radius:10px}
 
 /* Offer */
@@ -326,7 +328,7 @@ header.site.scr{border-color:var(--line);box-shadow:0 6px 20px -16px rgba(24,38,
 .g-seal{position:relative;width:128px;height:128px;margin:0 auto 22px;display:grid;place-items:center}
 .g-seal::before{content:"";position:absolute;width:84px;height:84px;border-radius:50%;box-shadow:0 0 0 0 rgba(242,166,59,.5);animation:sealpulse 2.8s ease-out infinite}
 .g-seal-ring{position:absolute;inset:0;width:100%;height:100%;animation:gspin 22s linear infinite}
-.g-seal-ring text{font-family:"Plus Jakarta Sans",sans-serif;font-size:8.4px;font-weight:800;letter-spacing:.8px;fill:var(--emerald-2)}
+.g-seal-ring text{font-family:"Plus Jakarta Sans",sans-serif;font-size:8.4px;font-weight:800;letter-spacing:2.2px;fill:var(--emerald-2)}
 .g-seal-core{position:relative;z-index:1;width:82px;height:82px;border-radius:50%;background:radial-gradient(circle at 50% 32%,#F7BE4A,#E0891C);border:3px solid #fff;box-shadow:0 12px 24px -10px rgba(224,138,30,.75),inset 0 2px 5px rgba(255,255,255,.55);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:#4a2c00}
 .g-seal-core svg{width:23px;height:23px;stroke-width:2.6}
 .g-seal-core .gs-days{font-family:"Fraunces",serif;font-weight:700;font-size:.75rem;line-height:1;letter-spacing:.01em}
@@ -482,7 +484,7 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
     <p class="sub rv d2">Tu ne rates pas le code parce que tu ne connais pas les règles — mais parce que personne ne t'a montré la <strong>logique</strong> derrière. CodeMaster te l'apprend une fois pour toutes, pour que tu répondes juste même à une question que tu n'as jamais vue.</p>
     <div class="hero-visual rv d2">
       <div class="glow" aria-hidden="true"></div>
-      <img src="img/produit.png" alt="Guide CodeMaster — le guide de révision du code de la route, lisible sur téléphone et ordinateur" width="555" height="640" fetchpriority="high">
+      <picture><source srcset="img/produit.webp" type="image/webp"><img src="img/produit.png" alt="Guide CodeMaster — le guide de révision du code de la route, lisible sur téléphone et ordinateur" width="555" height="640" fetchpriority="high"></picture>
       <div class="float-chip fc-1"><span class="ic" style="background:rgba(14,122,86,.14);color:var(--emerald-2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/></svg></span>80 pages<br>droit au but</div>
       <div class="float-chip fc-2"><span class="ic" style="background:rgba(238,83,48,.13);color:var(--coral-2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>32 questions<br>corrigées</div>
     </div>
@@ -557,7 +559,7 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
     <span class="kicker rv">La bonne nouvelle</span>
     <h2 class="rv" style="font-size:clamp(1.9rem,5.6vw,3rem);margin:.5em 0 .7em">CodeMaster t'apprend la <span class="hl">logique</span>. Pas le par cœur.</h2>
     <div class="video-shell rv d1">
-      <video autoplay loop muted playsinline preload="metadata" poster="img/produit.png" aria-label="Aperçu animé du guide CodeMaster feuilleté">
+      <video autoplay loop muted playsinline preload="metadata" poster="img/produit.webp" aria-label="Aperçu animé du guide CodeMaster feuilleté">
         <source src="https://www.image2url.com/r2/default/videos/1790058285345-270d4579-2185-4dea-8863-fe0020247748.mp4" type="video/mp4">
         Ton navigateur ne peut pas lire cette vidéo.
       </video>
@@ -658,19 +660,19 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
   </div>
   <div class="marquee rv">
     <div class="marquee-track">
-      <div class="tcard"><img src="img/temoignage-1.png" alt="Témoignage d'un élève ayant réussi son code avec CodeMaster" loading="lazy"></div>
-      <div class="tcard"><img src="img/temoignage-2.png" alt="Avis 5 étoiles d'une élève CodeMaster" loading="lazy"></div>
-      <div class="tcard"><img src="img/temoignage-3.png" alt="Message de remerciement d'un élève CodeMaster" loading="lazy"></div>
-      <div class="tcard"><img src="img/temoignage-4.png" alt="Témoignage de réussite au code avec CodeMaster" loading="lazy"></div>
-      <div class="tcard"><img src="img/temoignage-5.png" alt="Avis positif sur la méthode CodeMaster" loading="lazy"></div>
-      <div class="tcard"><img src="img/temoignage-6.png" alt="Retour d'un élève satisfait de CodeMaster" loading="lazy"></div>
+      <div class="tcard"><picture><source srcset="img/temoignage-1.webp" type="image/webp"><img src="img/temoignage-1.png" alt="Témoignage d'un élève ayant réussi son code avec CodeMaster" loading="lazy" width="640" height="586"></picture></div>
+      <div class="tcard"><picture><source srcset="img/temoignage-2.webp" type="image/webp"><img src="img/temoignage-2.png" alt="Avis 5 étoiles d'une élève CodeMaster" loading="lazy" width="640" height="549"></picture></div>
+      <div class="tcard"><picture><source srcset="img/temoignage-3.webp" type="image/webp"><img src="img/temoignage-3.png" alt="Message de remerciement d'un élève CodeMaster" loading="lazy" width="640" height="494"></picture></div>
+      <div class="tcard"><picture><source srcset="img/temoignage-4.webp" type="image/webp"><img src="img/temoignage-4.png" alt="Témoignage de réussite au code avec CodeMaster" loading="lazy" width="640" height="546"></picture></div>
+      <div class="tcard"><picture><source srcset="img/temoignage-5.webp" type="image/webp"><img src="img/temoignage-5.png" alt="Avis positif sur la méthode CodeMaster" loading="lazy" width="640" height="539"></picture></div>
+      <div class="tcard"><picture><source srcset="img/temoignage-6.webp" type="image/webp"><img src="img/temoignage-6.png" alt="Retour d'un élève satisfait de CodeMaster" loading="lazy" width="640" height="579"></picture></div>
       <!-- duplicate for seamless loop -->
-      <div class="tcard" aria-hidden="true"><img src="img/temoignage-1.png" alt="" loading="lazy"></div>
-      <div class="tcard" aria-hidden="true"><img src="img/temoignage-2.png" alt="" loading="lazy"></div>
-      <div class="tcard" aria-hidden="true"><img src="img/temoignage-3.png" alt="" loading="lazy"></div>
-      <div class="tcard" aria-hidden="true"><img src="img/temoignage-4.png" alt="" loading="lazy"></div>
-      <div class="tcard" aria-hidden="true"><img src="img/temoignage-5.png" alt="" loading="lazy"></div>
-      <div class="tcard" aria-hidden="true"><img src="img/temoignage-6.png" alt="" loading="lazy"></div>
+      <div class="tcard" aria-hidden="true"><picture><source srcset="img/temoignage-1.webp" type="image/webp"><img src="img/temoignage-1.png" alt="" loading="lazy" width="640" height="586"></picture></div>
+      <div class="tcard" aria-hidden="true"><picture><source srcset="img/temoignage-2.webp" type="image/webp"><img src="img/temoignage-2.png" alt="" loading="lazy" width="640" height="549"></picture></div>
+      <div class="tcard" aria-hidden="true"><picture><source srcset="img/temoignage-3.webp" type="image/webp"><img src="img/temoignage-3.png" alt="" loading="lazy" width="640" height="494"></picture></div>
+      <div class="tcard" aria-hidden="true"><picture><source srcset="img/temoignage-4.webp" type="image/webp"><img src="img/temoignage-4.png" alt="" loading="lazy" width="640" height="546"></picture></div>
+      <div class="tcard" aria-hidden="true"><picture><source srcset="img/temoignage-5.webp" type="image/webp"><img src="img/temoignage-5.png" alt="" loading="lazy" width="640" height="539"></picture></div>
+      <div class="tcard" aria-hidden="true"><picture><source srcset="img/temoignage-6.webp" type="image/webp"><img src="img/temoignage-6.png" alt="" loading="lazy" width="640" height="579"></picture></div>
     </div>
   </div>
 </section>
@@ -721,7 +723,7 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
   <div class="wrap">
     <div class="g-card rv">
       <div class="g-seal" aria-hidden="true">
-        <svg class="g-seal-ring" viewBox="0 0 120 120"><defs><path id="gsealpath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text lengthAdjust="spacing" textLength="291"><textPath href="#gsealpath" startOffset="0">GARANTIE 7 JOURS · SATISFAIT OU REMBOURSÉ · </textPath></text></svg>
+        <svg class="g-seal-ring" viewBox="0 0 120 120"><defs><path id="gsealpath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text><textPath href="#gsealpath" startOffset="0">GARANTIE 7 JOURS · SATISFAIT OU REMBOURSÉ · </textPath></text></svg>
         <div class="g-seal-core">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
           <span class="gs-days">7 jours</span>
