@@ -172,12 +172,11 @@ header.site.scr{border-color:var(--line);box-shadow:0 6px 20px -16px rgba(24,38,
 .cta-offer .co-price b{font-weight:800;color:#fff}
 .cta-offer .co-price s{opacity:.62;font-weight:600;font-size:.82em}
 @media(max-width:359px){.cta-offer{flex-direction:column;gap:.15em}.cta-offer .co-price{border-left:none;margin-left:0;padding-left:0}}
-/* Hero countdown timer */
-.hero-timer{display:inline-block;background:linear-gradient(180deg,#FFFDF8,#FBEFE9);border:1px solid rgba(238,83,48,.16);border-radius:18px;padding:12px 26px 14px;margin-top:16px;box-shadow:0 14px 32px -18px rgba(216,67,31,.32),var(--shadow-s)}
-.ht-label{display:flex;align-items:center;justify-content:center;gap:.5em;font-size:.71rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-2);margin-bottom:.05em}
-.ht-label .ht-ic{flex:none;margin-top:-1px}
-.ht-clock{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(2rem,9vw,2.7rem);line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.01em}
-.ht-clock i{font-style:normal;color:var(--coral);margin:0 .04em}
+/* Hero scarcity note */
+.hero-scarcity{display:inline-flex;align-items:center;gap:.6em;max-width:430px;margin-top:16px;padding:11px 18px;background:linear-gradient(180deg,#FFFDF8,#FBEFE9);border:1px solid rgba(238,83,48,.18);border-radius:14px;box-shadow:0 12px 28px -18px rgba(216,67,31,.32),var(--shadow-s);font-size:.9rem;font-weight:600;color:var(--ink-2);line-height:1.3;text-align:left}
+.hero-scarcity .hs-ic{flex:none;color:var(--coral-2);display:flex}
+.hero-scarcity .hs-ic svg{width:21px;height:21px}
+.hero-scarcity b{color:var(--coral-2);font-weight:800}
 /* Hero reassurance row */
 .cta-note .rz{display:inline-flex;align-items:center;gap:.4em;margin:0 .55em;white-space:nowrap}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -341,10 +340,18 @@ header.site.scr{border-color:var(--line);box-shadow:0 6px 20px -16px rgba(24,38,
 .urgency{background:var(--emerald-ink);color:#fff;text-align:center}
 .urgency h2{color:#fff;font-size:clamp(1.7rem,5vw,2.4rem)}
 .urgency .u-sub{color:#C6DBCF;max-width:46ch;margin:.6em auto 1.6em;font-size:1.05rem}
-.timer{display:flex;justify-content:center;gap:12px;margin:0 auto 1.6em;max-width:420px}
-.tbox{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:16px 6px;flex:1}
-.tbox .tn{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(2rem,10vw,3rem);line-height:1;color:#fff;font-variant-numeric:tabular-nums}
-.tbox .tl2{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#A9C6B7;margin-top:.6em;font-weight:700}
+.tiers{display:grid;gap:12px;max-width:470px;margin:1.7em auto}
+.tier{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 16px;text-align:left}
+.tier-active{background:rgba(242,166,59,.14);border-color:rgba(242,166,59,.6);box-shadow:0 12px 28px -14px rgba(242,166,59,.5)}
+.tier-rank{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-family:"Fraunces",serif;font-weight:700;display:grid;place-items:center;font-size:1.05rem}
+.tier-active .tier-rank{background:var(--amber);color:#4a2c00}
+.tier-info{flex:1;min-width:0}
+.tier-who{font-size:.72rem;color:#A9C6B7;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.tier-active .tier-who{color:#F2C87A}
+.tier-price{font-family:"Fraunces",serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15;margin-top:.1em}
+.tier.more .tier-price{font-family:"Plus Jakarta Sans",sans-serif;font-size:.92rem;font-weight:600;color:#CFE1D8}
+.tier-tag{flex:none;font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.4em .7em;border-radius:999px;background:var(--coral);color:#fff;white-space:nowrap}
+.tier-tag.next{background:rgba(255,255,255,.1);color:#CFE1D8}
 .u-points{list-style:none;max-width:520px;margin:1.6em auto 0;display:grid;gap:.7em;text-align:left}
 .u-points li{display:flex;gap:.7em;color:#D5E5DC;font-size:.95rem;font-weight:500}
 .u-points li b{color:#fff}
@@ -485,9 +492,9 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
         <span class="co-price"><b>3 449 FCFA</b><s>60 000</s></span>
       </a>
     </div>
-    <div class="hero-timer rv d3" role="timer" aria-label="Compte à rebours de l'offre">
-      <div class="ht-label"><svg class="ht-ic" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M8 3v3l4 4 4-4V3M8 21v-3l4-4 4 4v3"/></svg> Cette offre expire dans</div>
-      <div class="ht-clock"><span id="hth">00</span><i>:</i><span id="htm">00</span><i>:</i><span id="hts">00</span></div>
+    <div class="hero-scarcity rv d3">
+      <span class="hs-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.2a4 4 0 0 1 0 7.6"/></svg></span>
+      <span>Tarif réservé aux <b>30 premières personnes</b> — ensuite <b>7 000 FCFA</b>.</span>
     </div>
   </div>
 </section>
@@ -699,7 +706,7 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
         </div>
       </div>
       <div class="final-price">
-        <div class="today">Aujourd'hui seulement</div>
+        <div class="today">Prix des 30 premiers</div>
         <div class="big">3 449 <small>FCFA</small></div>
         <div class="saveline">Tu économises ~56 551 FCFA (−94%)</div>
         <a class="cta" href="https://nwgetgqb.mychariow.com/prd_k7wbargm/checkout" target="_blank" rel="noopener">Je débloque tout maintenant <span class="arw" aria-hidden="true">→</span></a>
@@ -731,19 +738,30 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
 <!-- ============ 11. URGENCE ============ -->
 <section class="sec urgency">
   <div class="wrap">
-    <div class="rv" style="max-width:640px;margin:0 auto">
-      <span class="kicker" style="background:rgba(242,166,59,.15);color:#F2C87A;border-color:rgba(242,166,59,.3)">Prix de lancement</span>
-      <h2 style="margin:.5em 0 0">Ce prix ne va pas rester à <span class="hl">3 449 FCFA</span></h2>
-      <p class="u-sub">Le prix de lancement remonte progressivement vers sa vraie valeur (20 000 FCFA) à mesure que le nombre d'acheteurs augmente. Ne laisse pas le compteur ci-dessous tomber à zéro.</p>
-      <div class="timer" id="timer" role="timer" aria-label="Compte à rebours de l'offre">
-        <div class="tbox"><div class="tn" id="th">00</div><div class="tl2">Heures</div></div>
-        <div class="tbox"><div class="tn" id="tm">00</div><div class="tl2">Minutes</div></div>
-        <div class="tbox"><div class="tn" id="ts">00</div><div class="tl2">Secondes</div></div>
+    <div class="rv" style="max-width:680px;margin:0 auto">
+      <span class="kicker" style="background:rgba(242,166,59,.15);color:#F2C87A;border-color:rgba(242,166,59,.3)">Places limitées</span>
+      <h2 style="margin:.5em 0 0">Ce tarif est réservé aux <span class="hl">30 premières personnes</span></h2>
+      <p class="u-sub">Ce n'est pas une promo qui traîne : le prix monte <b>par paliers</b>, au fur et à mesure des inscriptions. Une fois les places parties, on passe au palier suivant — et ça ne redescend jamais.</p>
+      <div class="tiers">
+        <div class="tier tier-active">
+          <span class="tier-rank">1</span>
+          <div class="tier-info"><div class="tier-who">Les 30 premières personnes</div><div class="tier-price">3 449 FCFA</div></div>
+          <span class="tier-tag">Maintenant</span>
+        </div>
+        <div class="tier">
+          <span class="tier-rank">2</span>
+          <div class="tier-info"><div class="tier-who">Les 20 suivantes</div><div class="tier-price">7 000 FCFA</div></div>
+          <span class="tier-tag next">Ensuite</span>
+        </div>
+        <div class="tier more">
+          <span class="tier-rank">3</span>
+          <div class="tier-info"><div class="tier-who">Après ça</div><div class="tier-price">Le prix continue de grimper ↑</div></div>
+        </div>
       </div>
-      <a class="cta" href="https://nwgetgqb.mychariow.com/prd_k7wbargm/checkout" target="_blank" rel="noopener" style="background:#fff;color:var(--coral-2)">Je profite du prix de lancement <span class="arw" aria-hidden="true">→</span></a>
+      <a class="cta" href="https://nwgetgqb.mychariow.com/prd_k7wbargm/checkout" target="_blank" rel="noopener" style="background:#fff;color:var(--coral-2)">Je prends ma place à 3 449 FCFA <span class="arw" aria-hidden="true">→</span></a>
       <ul class="u-points">
-        <li><span class="mk" aria-hidden="true">›</span><span><b>Les bonus (40 000 FCFA de valeur)</b> — pack 200 vidéo quiz + cours de 250 pages — sont réservés aux prochains acheteurs, pas garantis à vie.</span></li>
-        <li><span class="mk" aria-hidden="true">›</span><span>Chaque session d'examen qui approche, c'est une session de plus où tu risques de <b>repayer 30 000 FCFA</b> pour rien. Plus tu attends, plus la date approche.</span></li>
+        <li><span class="mk" aria-hidden="true">›</span><span><b>Les 2 bonus (40 000 FCFA de valeur)</b> — pack 200 vidéo quiz + cours de 250 pages — sont offerts aux premiers inscrits, pas garantis une fois les places parties.</span></li>
+        <li><span class="mk" aria-hidden="true">›</span><span>Chaque nouvelle inscription rapproche le passage au palier suivant. <b>Au palier d'après, c'est déjà le double.</b></span></li>
       </ul>
     </div>
   </div>
@@ -877,26 +895,6 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
     });
   });
 
-  // Countdown — 2h max, persistent via localStorage, auto-resets
-  var th=document.getElementById('th'),tm=document.getElementById('tm'),ts=document.getElementById('ts');
-  var hth=document.getElementById('hth'),htm=document.getElementById('htm'),hts=document.getElementById('hts');
-  var CM_WIN=2*60*60*1000;
-  function getDeadline(){
-    var dl,now=Date.now();
-    try{dl=parseInt(localStorage.getItem('cm_deadline'),10);}catch(e){dl=NaN;}
-    if(!dl||isNaN(dl)||dl<=now||dl>now+CM_WIN+1000){dl=now+CM_WIN;try{localStorage.setItem('cm_deadline',String(dl));}catch(e){}}
-    return dl;
-  }
-  var deadline=getDeadline();
-  function pad(n){return n<10?'0'+n:''+n;}
-  function tick(){
-    var diff=deadline-Date.now();
-    if(diff<=0){deadline=getDeadline();diff=deadline-Date.now();}
-    var h=Math.floor(diff/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
-    if(th){th.textContent=pad(h);tm.textContent=pad(m);ts.textContent=pad(s);}
-    if(hth){hth.textContent=pad(h);htm.textContent=pad(m);hts.textContent=pad(s);}
-  }
-  tick();setInterval(tick,1000);
 })();
 </script>
 </body>
