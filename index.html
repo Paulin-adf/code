@@ -410,8 +410,8 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
 .sticky-cta .cta{padding:.85em 1.15em;font-size:.95rem;flex:none}
 
 /* Purchase social-proof toast */
-.buy-toast{position:fixed;z-index:75;top:72px;left:12px;display:flex;align-items:center;gap:11px;width:calc(100% - 24px);max-width:330px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 34px 10px 11px;box-shadow:var(--shadow-l);opacity:0;pointer-events:none;transform:translateY(-140%);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.28,.64,1)}
-.buy-toast.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.buy-toast{position:fixed;z-index:75;top:14px;left:50%;display:flex;align-items:center;gap:11px;width:calc(100% - 24px);max-width:330px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 34px 10px 11px;box-shadow:var(--shadow-l);opacity:0;pointer-events:none;transform:translate(-50%,-150%);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.28,.64,1)}
+.buy-toast.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
 .bt-thumb{flex:none;width:42px;height:48px;border-radius:8px;overflow:hidden;background:var(--cream-2);box-shadow:var(--shadow-s)}
 .bt-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .bt-body{flex:1;min-width:0;line-height:1.25}
@@ -878,7 +878,7 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
   <span class="bt-thumb"><img src="img/produit.webp" alt="" width="42" height="48" loading="lazy"></span>
   <div class="bt-body">
     <div class="bt-name"><b id="btName"></b><span class="bt-flag" id="btFlag"></span></div>
-    <div class="bt-msg">vient de recevoir <b>CodeMaster</b></div>
+    <div class="bt-msg">vient d'acheter <b>CodeMaster</b></div>
     <div class="bt-time" id="btTime"></div>
   </div>
   <span class="bt-check" aria-hidden="true">
