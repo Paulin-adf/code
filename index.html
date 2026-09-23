@@ -409,6 +409,27 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
 .sticky-cta .sp small{display:block;font-size:.72rem;color:var(--ink-3);font-weight:600}
 .sticky-cta .cta{padding:.85em 1.15em;font-size:.95rem;flex:none}
 
+/* Purchase social-proof toast */
+.buy-toast{position:fixed;z-index:75;top:72px;left:12px;display:flex;align-items:center;gap:11px;width:calc(100% - 24px);max-width:330px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 34px 10px 11px;box-shadow:var(--shadow-l);opacity:0;pointer-events:none;transform:translateY(-140%);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.28,.64,1)}
+.buy-toast.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.bt-thumb{flex:none;width:42px;height:48px;border-radius:8px;overflow:hidden;background:var(--cream-2);box-shadow:var(--shadow-s)}
+.bt-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.bt-body{flex:1;min-width:0;line-height:1.25}
+.bt-name{display:flex;align-items:center;gap:.4em;font-size:.9rem;font-weight:800;color:var(--ink)}
+.bt-flag{font-size:1.05rem;line-height:1}
+.bt-msg{font-size:.8rem;color:var(--ink-2);font-weight:500}
+.bt-msg b{color:var(--emerald-2);font-weight:700}
+.bt-time{font-size:.71rem;color:var(--ink-3);font-weight:600;margin-top:1px}
+.bt-check{flex:none;width:22px;height:22px;border-radius:50%;background:var(--emerald);color:#fff;display:grid;place-items:center;align-self:flex-start}
+.bt-check svg{width:13px;height:13px}
+.bt-close{position:absolute;top:5px;right:8px;background:none;border:none;color:var(--ink-3);font-size:1.15rem;line-height:1;cursor:pointer;padding:2px 4px}
+.bt-close:hover{color:var(--ink)}
+.bt-close:focus-visible{outline:2px solid var(--emerald);outline-offset:1px;border-radius:4px}
+@media(min-width:820px){
+  .buy-toast{top:auto;bottom:24px;left:24px;transform:translateY(140%)}
+  .buy-toast.show{transform:translateY(0)}
+}
+
 /* reveal animation */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
@@ -852,6 +873,20 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
   <a class="cta" href="https://nwgetgqb.mychariow.com/prd_k7wbargm/checkout">Obtenir <span class="arw" aria-hidden="true">→</span></a>
 </div>
 
+<!-- ============ NOTIFICATION D'ACHAT (preuve sociale) ============ -->
+<div class="buy-toast" id="buyToast" aria-hidden="true">
+  <span class="bt-thumb"><img src="img/produit.webp" alt="" width="42" height="48" loading="lazy"></span>
+  <div class="bt-body">
+    <div class="bt-name"><b id="btName"></b><span class="bt-flag" id="btFlag"></span></div>
+    <div class="bt-msg">vient de recevoir <b>CodeMaster</b></div>
+    <div class="bt-time" id="btTime"></div>
+  </div>
+  <span class="bt-check" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  </span>
+  <button class="bt-close" id="btClose" type="button" aria-label="Masquer les notifications">×</button>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -896,6 +931,40 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
       else{item.classList.add('open');btn.setAttribute('aria-expanded','true');ans.style.maxHeight=ans.scrollHeight+'px';}
     });
   });
+
+  // Notifications d'achat (preuve sociale)
+  var toast=document.getElementById('buyToast');
+  if(toast){
+    var nEl=document.getElementById('btName'),tEl=document.getElementById('btTime'),fEl=document.getElementById('btFlag'),cBtn=document.getElementById('btClose');
+    var people=[
+      {n:'Aminata D.',v:'Abidjan',f:'🇨🇮'},{n:'Mamadou S.',v:'Dakar',f:'🇸🇳'},
+      {n:'Grâce N.',v:'Yaoundé',f:'🇨🇲'},{n:'Ibrahim T.',v:'Cotonou',f:'🇧🇯'},
+      {n:'Awa K.',v:'Lomé',f:'🇹🇬'},{n:'Moussa D.',v:'Bamako',f:'🇲🇱'},
+      {n:'Chantal M.',v:'Ouagadougou',f:'🇧🇫'},{n:'Emmanuel K.',v:'Kinshasa',f:'🇨🇩'},
+      {n:'Sylvie B.',v:'Libreville',f:'🇬🇦'},{n:'Ousmane B.',v:'Conakry',f:'🇬🇳'},
+      {n:'Fatou C.',v:'Thiès',f:'🇸🇳'},{n:'Serge A.',v:'Douala',f:'🇨🇲'},
+      {n:'Adjoa Y.',v:'Abidjan',f:'🇨🇮'},{n:'Prince M.',v:'Lubumbashi',f:'🇨🇩'},
+      {n:'Rachelle O.',v:'Porto-Novo',f:'🇧🇯'},{n:'Yao K.',v:'Bouaké',f:'🇨🇮'},
+      {n:'Mariam S.',v:'Bamako',f:'🇲🇱'},{n:'Divine E.',v:'Yaoundé',f:'🇨🇲'}
+    ];
+    var stopped=false,hideT,nextT,last=-1;
+    function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+    function pick(){var i;do{i=ri(0,people.length-1);}while(i===last&&people.length>1);last=i;return people[i];}
+    function show(){
+      if(stopped)return;
+      var p=pick(),m=ri(2,18);
+      nEl.textContent=p.n;fEl.textContent=p.f;
+      tEl.textContent='il y a '+m+' min · '+p.v;
+      toast.classList.add('show');toast.setAttribute('aria-hidden','false');
+      clearTimeout(hideT);hideT=setTimeout(hide,5500);
+    }
+    function hide(){
+      toast.classList.remove('show');toast.setAttribute('aria-hidden','true');
+      if(!stopped){clearTimeout(nextT);nextT=setTimeout(show,ri(15000,26000));}
+    }
+    cBtn.addEventListener('click',function(){stopped=true;clearTimeout(hideT);clearTimeout(nextT);hide();});
+    nextT=setTimeout(show,6000);
+  }
 
 })();
 </script>
