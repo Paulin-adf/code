@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1735536870865844');
+fbq('track','PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
 <title>CodeMaster — Réussis ton code de la route du 1er coup</title>
 <meta name="description" content="Arrête de bachoter. Comprends enfin la logique du code de la route avec CodeMaster : guide + 200 vidéo quiz + 32 questions corrigées. 3 449 FCFA.">
 <meta name="keywords" content="réviser code de la route, questions code de la route corrigées, réussir code premier coup">
@@ -473,6 +482,7 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1735536870865844&ev=PageView&noscript=1" alt=""></noscript>
 
 <!-- ============ HEADER ============ -->
 <header class="site" id="top">
@@ -930,6 +940,11 @@ footer.site{background:var(--emerald-ink);color:#A9C6B7;padding:42px 0 40px;font
       if(open){item.classList.remove('open');btn.setAttribute('aria-expanded','false');ans.style.maxHeight=null;}
       else{item.classList.add('open');btn.setAttribute('aria-expanded','true');ans.style.maxHeight=ans.scrollHeight+'px';}
     });
+  });
+
+  // Meta Pixel — InitiateCheckout au clic sur un CTA checkout
+  document.querySelectorAll('a[href*="mychariow.com"]').forEach(function(a){
+    a.addEventListener('click',function(){if(window.fbq){fbq('track','InitiateCheckout');}});
   });
 
   // Notifications d'achat (preuve sociale)
